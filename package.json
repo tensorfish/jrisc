@@ -1,0 +1,20 @@
+{
+  "name": "jrisc",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "test": "node --test",
+    "evaluate": "node --env-file=.env scripts/evaluate.js",
+    "record": "node scripts/record.js",
+    "video": "python3 scripts/render-video.py",
+    "check:browser": "node scripts/browser-check.js",
+    "format": "prettier --write \"lib/*.js\" \"public/*.{js,css,html}\" \"scripts/*.js\" \"test/*.js\" server.js"
+  },
+  "devDependencies": {
+    "ffmpeg-static": "^5.3.0",
+    "ffprobe-static": "^3.1.0",
+    "playwright": "^1.55.0",
+    "prettier": "^3.9.8"
+  }
+}

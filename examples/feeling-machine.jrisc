@@ -1,0 +1,13 @@
+; Feeling machine — the entire program
+LI R7, 61440       ; display address
+LI R0, 1           ; heart shape
+ST R0, R7, 0       ; draw the heart
+LI R0, 256         ; 256 particles
+ST R0, R7, 2       ; set particle count
+listen: JUDGE 0    ; ask Jev about the message
+LI R6, 57344       ; decision-bank address
+LD R0, R6, 1       ; read the selected mood
+LI R1, 4           ; 4 means unknown
+BEQ R0, R1, listen ; uncertain? keep the color
+ST R0, R7, 1       ; mood becomes a palette
+JMP listen         ; wait for the next message

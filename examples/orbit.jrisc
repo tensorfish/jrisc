@@ -1,0 +1,27 @@
+; JRISC • deterministic scene setup
+LI R7, 61440
+LI R0, 2
+ST R0, R7, 0
+LI R0, 2
+ST R0, R7, 1
+LI R0, 256
+ST R0, R7, 2
+LI R0, 65535
+ST R0, R7, 3
+LI R0, 5000
+ST R0, R7, 4
+; Each message is one immutable semantic snapshot
+listen: JUDGE 0
+LI R6, 57344
+LD R0, R6, 1
+LI R1, 4
+BEQ R0, R1, listen
+ST R0, R7, 1
+LD R2, R6, 33
+LI R3, 1
+SHR R2, R2, R3
+ST R2, R7, 4
+LD R4, R7, 5
+ADD R4, R4, R3
+ST R4, R7, 5
+JMP listen

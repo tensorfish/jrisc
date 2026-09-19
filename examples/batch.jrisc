@@ -1,0 +1,14 @@
+LI R7, 61440 ; display address
+LI R0, 3 ; shape
+ST R0, R7, 0 ; set shape
+LI R0, 2 ; initial palette
+ST R0, R7, 1 ; set palette
+listen: JUDGE 0 ; four judgments, one snapshot
+LI R6, 57344 ; decision bank
+LD R0, R6, 1 ; mood choice
+LI R1, 4 ; unknown option
+BEQ R0, R1, motion ; preserve color if unknown
+ST R0, R7, 1 ; mood → palette
+motion: LD R0, R6, 33 ; energy score
+ST R0, R7, 4 ; energy → motion
+JMP listen ; next message

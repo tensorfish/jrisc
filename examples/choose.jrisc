@@ -1,0 +1,11 @@
+LI R7, 61440 ; display address
+LI R0, 1 ; shape
+ST R0, R7, 0 ; set shape
+LI R0, 1 ; initial palette
+ST R0, R7, 1 ; set palette
+listen: CHOOSE R0, 1 ; choose mood
+CONF R2, 0 ; read confidence
+LI R1, 4 ; unknown option
+BEQ R0, R1, listen ; keep color on unknown
+ST R0, R7, 1 ; set palette
+JMP listen ; next message

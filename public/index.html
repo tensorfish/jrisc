@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f0e6" />
+    <title>JRISC — a little computer with a new instruction</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#playground">Skip to the program</a>
+    <header>
+      <a class="brand" href="#" aria-label="JRISC home"
+        ><svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 0h16v4h4v16h-4v4H4v-4H0V4h4z" fill="currentColor" />
+          <path d="M6 7h4v5H6zm8 0h4v5h-4zM7 16h10v3H7z" fill="#f4f0e6" /></svg
+        >JRISC<span>FANTASY COMPUTER / 001</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#instruction-set">Instruction set</a
+        ><a href="#playground">Playground</a
+        ><a href="/docs/isa.md" target="_blank" rel="noopener"
+          >Field manual ↗</a
+        >
+      </nav>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">
+            A tiny computer.<br /><span>Jev inside.</span>
+          </h1>
+          <p>Integer math. Semantic decisions. Real programs.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#playground" id="hero-play"
+              >Play with a program <span>↘</span></a
+            ><a class="text-link" href="#instruction-set"
+              >Meet the instructions ↓</a
+            >
+          </div>
+          <div class="machine-spec">
+            <span>16-BIT MACHINE</span><i>+</i><span>8 REGISTERS</span><i>+</i
+            ><span>20 INSTRUCTIONS</span>
+          </div>
+        </div>
+        <div
+          class="hero-art"
+          aria-label="Illustration: a message enters the JUDGE chip, which returns decisions"
+        >
+          <div class="art-stamp">NEW INSTRUCTION<br /><b>0xF / JUDGE</b></div>
+          <div class="speech-bubble">“you make my day”<span>↓</span></div>
+          <svg
+            class="chip-art"
+            viewBox="0 0 400 280"
+            role="img"
+            aria-label="Pixel computer chip with a heart"
+          >
+            <defs>
+              <pattern
+                id="pin"
+                width="36"
+                height="12"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect width="14" height="12" fill="#333242" />
+              </pattern>
+            </defs>
+            <path
+              d="M54 96H20v54h50M330 190h42v-44h-34"
+              fill="none"
+              stroke="#b3afa3"
+              stroke-width="2"
+            />
+            <path d="M85 36h228v208H85z" fill="#333242" />
+            <path
+              d="M78 30h228v208H78z"
+              fill="#bdb1ed"
+              stroke="#333242"
+              stroke-width="3"
+            />
+            <path
+              d="M91 43h202v178H91z"
+              fill="#d9d0f4"
+              stroke="#333242"
+              stroke-width="2"
+            />
+            <path d="M113 64h158v105H113z" fill="#282736" />
+            <g class="heart-pixels" fill="#f69375">
+              <path
+                d="M149 81h21v7h14v-7h21v7h7v21h-7v7h-7v7h-7v7h-7v7h-14v-7h-7v-7h-7v-7h-7v-7h-7V88h7z"
+              />
+              <path d="M219 88h7v7h-7zm21 37h7v7h-7zm-115 0h7v7h-7z" />
+            </g>
+            <g fill="#333242">
+              <path
+                d="M108 12h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zM108 238h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zm36 0h12v18h-12zM60 58h18v12H60zm0 36h18v12H60zm0 36h18v12H60zm0 36h18v12H60zm0 36h18v12H60zM306 58h18v12h-18zm0 36h18v12h-18zm0 36h18v12h-18zm0 36h18v12h-18zm0 36h18v12h-18zm0 36h18v12h-18z"
+              />
+            </g>
+            <text
+              x="192"
+              y="202"
+              text-anchor="middle"
+              fill="#333242"
+              font-family="monospace"
+              font-size="24"
+              font-weight="bold"
+              letter-spacing="5"
+            >
+              JUDGE
+            </text>
+            <rect x="12" y="143" width="10" height="10" fill="#f18366" />
+            <rect x="367" y="138" width="10" height="10" fill="#8b77c7" />
+          </svg>
+          <div class="art-caption">
+            <span>WORDS IN</span><b>→</b><span>DECISIONS OUT</span>
+          </div>
+        </div>
+      </section>
+      <section
+        class="isa-section"
+        id="instruction-set"
+        aria-labelledby="isa-heading"
+      >
+        <div class="section-heading">
+          <div>
+            <h2 id="isa-heading">Instruction set</h2>
+          </div>
+        </div>
+        <div class="opcode-legend">
+          <span><i class="legend-dot local"></i>15 core instructions</span
+          ><span><i class="legend-dot semantic"></i>5 Jev instructions</span
+          ><span class="legend-hint">↓ Click any instruction</span>
+        </div>
+        <div
+          class="opcode-grid"
+          id="opcode-grid"
+          aria-label="Explore the 20 instructions"
+        ></div>
+        <div
+          class="instruction-explainer"
+          id="instruction-explainer"
+          aria-live="polite"
+        >
+          <div class="explainer-id">
+            <span id="op-category">SEMANTIC / 0xF</span
+            ><strong id="op-name">JUDGE</strong>
+          </div>
+          <div class="explainer-copy">
+            <h3 id="op-title">Ask questions. Understand the input.</h3>
+            <p id="op-description">
+              Jev evaluates independent questions about one snapshot in a single
+              request. The computer waits, then commits every answer together.
+            </p>
+          </div>
+          <div class="explainer-example">
+            <code id="op-code">JUDGE 0</code
+            ><span id="op-effect"
+              >message → mood, energy, kindness, intent</span
+            >
+          </div>
+        </div>
+      </section>
+      <section
+        class="playground"
+        id="playground"
+        aria-labelledby="program-heading"
+      >
+        <div class="section-heading">
+          <div>
+            <h2 id="program-heading">Programs</h2>
+          </div>
+          <span class="cartridge-label"
+            ><span class="pixel-heart">♥</span> INSERT CARTRIDGE / 01</span
+          >
+        </div>
+
+        <div class="preset-row">
+          <button data-preset="choose" class="selected" aria-pressed="true">
+            CHOOSE <b>Mood</b></button
+          ><button data-preset="score" aria-pressed="false">
+            SCORE <b>Energy</b></button
+          ><button data-preset="test" aria-pressed="false">
+            TEST <b>Kindness</b></button
+          ><button data-preset="batch" aria-pressed="false">
+            JUDGE <b>Batch</b>
+          </button>
+        </div>
+        <div class="workspace">
+          <section class="program-panel">
+            <div class="interaction-panel">
+              <div class="message-area">
+                <div id="input-prompt" role="status">
+                  <label id="interaction-title" for="message"
+                    >Your message</label
+                  >
+                  <span id="interaction-state">Your turn</span>
+                </div>
+
+                <div class="message-bar">
+                  <input
+                    id="message"
+                    aria-label="Incoming message"
+                    aria-describedby="interaction-state"
+                    maxlength="500"
+                    placeholder="Type a message…"
+                  /><button id="send" aria-label="Send message">Send ↗</button>
+                </div>
+                <div class="message-presets">
+                  <button
+                    data-message="You make the world a little brighter. Thank you for being here."
+                  >
+                    ♥ Something kind</button
+                  ><button
+                    data-message="Everything is falling apart! I am furious and overwhelmed!"
+                  >
+                    ↯ Plot twist</button
+                  ><button
+                    data-message="The lake is still. Breathe slowly. There is no rush."
+                  >
+                    ≈ Find calm</button
+                  ><button id="stream">Play all ▷</button>
+                </div>
+              </div>
+              <div id="notice" role="status"></div>
+              <section
+                class="decision-panel"
+                aria-label="Instruction result"
+                hidden
+              >
+                <div class="decision-body">
+                  <div class="fan-header">
+                    <span class="jev">JEV RETURNS</span>
+                  </div>
+                  <div id="decisions"></div>
+                </div>
+              </section>
+              <details class="answer-details" hidden>
+                <summary>Details</summary>
+                <p class="input-chip" id="snapshot-label"></p>
+                <div class="decision-bottom">
+                  <div class="commit" id="commit">◇ Waiting for JUDGE</div>
+                  <div class="metrics">
+                    <div><small>LATENCY</small><b id="latency">—</b></div>
+                    <div>
+                      <small>QUESTIONS</small><b id="questions">4 / batch</b>
+                    </div>
+                    <div><small>MODEL</small><b id="model">jev-latest</b></div>
+                  </div>
+                </div>
+                <pre id="typed-answers">No decisions yet.</pre>
+              </details>
+              <p class="prob-note" hidden>Probabilities are not guarantees.</p>
+            </div>
+          </section>
+          <section class="display-panel">
+            <div class="panel-heading">
+              <span><i class="dot"></i> PIXEL OUTPUT</span
+              ><span id="scene-label">HEART · 256 PARTICLES</span>
+            </div>
+            <div class="canvas-wrap">
+              <canvas
+                id="screen"
+                width="1200"
+                height="900"
+                aria-label="Live pixel heart display"
+              ></canvas>
+              <div class="canvas-corner">
+                JR–16<span id="display-state">WAITING TO BOOT</span>
+              </div>
+              <div class="scene-caption">
+                <span id="scene-word">a little understanding.</span
+                ><small id="scene-detail"
+                  >Run the program to bring it to life.</small
+                >
+              </div>
+              <span class="coordinate">MEMORY → PIXELS</span>
+            </div>
+            <div class="screen-base">
+              <span>● ● ●</span><span>16-BIT / JEV INSIDE</span><i></i>
+            </div>
+          </section>
+          <section class="code-panel" aria-label="Program source">
+            <div class="panel-heading">
+              <span><i class="square-icon"></i> PROGRAM ROM</span
+              ><button id="download-program">Save .jrisc ↓</button>
+            </div>
+            <div class="program-meta">
+              <b id="program-title">feeling_machine.jrisc</b
+              ><span id="word-count">12 instructions</span>
+            </div>
+
+            <div
+              id="instructions"
+              tabindex="0"
+              aria-label="Program instructions, current instruction highlighted"
+            ></div>
+            <details class="machine-details">
+              <summary>
+                Open the machine <span>registers / assembly / replay</span>
+              </summary>
+              <div
+                class="execution-explanation"
+                id="execution-explanation"
+                aria-live="polite"
+              >
+                Press Run to start the machine, or Step to follow one
+                instruction.
+              </div>
+              <div class="transport">
+                <div>
+                  <button id="run" class="primary">▶ Run</button
+                  ><button id="step">Step →</button
+                  ><button id="reset">↺ Reset</button>
+                </div>
+                <span id="status">READY</span>
+              </div>
+              <div class="register-heading">
+                REGISTERS <span>16-BIT · HEX</span>
+              </div>
+              <div id="registers"></div>
+              <label for="assembly" class="editor-label">ASSEMBLY EDITOR</label
+              ><textarea
+                id="assembly"
+                spellcheck="false"
+                aria-label="Assembly source"
+              ></textarea>
+              <div class="editor-actions">
+                <button id="assemble">Assemble & load</button
+                ><button id="replay">↻ Replay trace</button
+                ><button id="download-trace">Save trace ↓</button
+                ><label class="import-label"
+                  >Import replay<input
+                    id="import-trace"
+                    type="file"
+                    accept="application/json"
+                    hidden
+                /></label>
+              </div>
+            </details>
+          </section>
+        </div>
+      </section>
+      <footer>
+        <a class="brand" href="#">JRISC<span>A VERY SMALL COMPUTER.</span></a
+        ><span
+          >An experiment in programmable understanding.<br />Powered by Jev.
+          Built for curiosity.</span
+        ><a href="/docs/isa.md" target="_blank" rel="noopener"
+          >Read the field manual ↗</a
+        >
+      </footer>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

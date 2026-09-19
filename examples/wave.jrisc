@@ -1,0 +1,13 @@
+; JRISC • deterministic scene setup
+LI R7, 61440
+LI R0, 3
+ST R0, R7, 0
+LI R0, 3
+ST R0, R7, 1
+LI R0, 256
+ST R0, R7, 2
+LI R0, 1
+ST R0, R7, 3
+LI R0, 5000
+ST R0, R7, 4
+HALT

@@ -1,0 +1,8 @@
+LI R7, 61440 ; display address
+LI R0, 2 ; shape
+ST R0, R7, 0 ; set shape
+LI R0, 2 ; initial palette
+ST R0, R7, 1 ; set palette
+listen: SCORE R0, 2 ; energy, 0–10000
+ST R0, R7, 4 ; set motion energy
+JMP listen ; next message

@@ -1,0 +1,206 @@
+
+> jrisc@1.0.0 test
+> node --test
+
+TAP version 13
+# Subtest: Jev extensions round-trip without changing legacy words
+ok 1 - Jev extensions round-trip without changing legacy words
+  ---
+  duration_ms: 1.37075
+  type: 'test'
+  ...
+# Subtest: choose cartridge executes, reacts and replays
+ok 2 - choose cartridge executes, reacts and replays
+  ---
+  duration_ms: 1.764792
+  type: 'test'
+  ...
+# Subtest: score cartridge executes, reacts and replays
+ok 3 - score cartridge executes, reacts and replays
+  ---
+  duration_ms: 0.48125
+  type: 'test'
+  ...
+# Subtest: test cartridge executes, reacts and replays
+ok 4 - test cartridge executes, reacts and replays
+  ---
+  duration_ms: 0.375459
+  type: 'test'
+  ...
+# Subtest: batch cartridge executes, reacts and replays
+ok 5 - batch cartridge executes, reacts and replays
+  ---
+  duration_ms: 0.903458
+  type: 'test'
+  ...
+# Subtest: primitive rejects incompatible descriptor without a request
+ok 6 - primitive rejects incompatible descriptor without a request
+  ---
+  duration_ms: 0.107583
+  type: 'test'
+  ...
+# Subtest: CONF reads descriptor order and rejects Noul slot
+ok 7 - CONF reads descriptor order and rejects Noul slot
+  ---
+  duration_ms: 0.309166
+  type: 'test'
+  ...
+# Subtest: primitive timeout preserves destination and bank
+ok 8 - primitive timeout preserves destination and bank
+  ---
+  duration_ms: 5.171584
+  type: 'test'
+  ...
+# Subtest: local proxy fixes questions, rejects origin/mismatch and never serves env
+ok 9 - local proxy fixes questions, rejects origin/mismatch and never serves env
+  ---
+  duration_ms: 18.641959
+  type: 'test'
+  ...
+# Subtest: all opcodes assembler disassembler round trip
+ok 10 - all opcodes assembler disassembler round trip
+  ---
+  duration_ms: 1.496375
+  type: 'test'
+  ...
+# Subtest: arithmetic wraps and all bitwise operations are exact
+ok 11 - arithmetic wraps and all bitwise operations are exact
+  ---
+  duration_ms: 0.540292
+  type: 'test'
+  ...
+# Subtest: signed comparison and equality branches
+ok 12 - signed comparison and equality branches
+  ---
+  duration_ms: 0.189375
+  type: 'test'
+  ...
+# Subtest: shift count uses low four bits
+ok 13 - shift count uses low four bits
+  ---
+  duration_ms: 0.083083
+  type: 'test'
+  ...
+# Subtest: memory write/load and display writes
+ok 14 - memory write/load and display writes
+  ---
+  duration_ms: 0.124125
+  type: 'test'
+  ...
+# Subtest: fault on protected/unmapped store 4096
+ok 15 - fault on protected/unmapped store 4096
+  ---
+  duration_ms: 0.502917
+  type: 'test'
+  ...
+# Subtest: fault on protected/unmapped store 57344
+ok 16 - fault on protected/unmapped store 57344
+  ---
+  duration_ms: 0.136
+  type: 'test'
+  ...
+# Subtest: fault on protected/unmapped store 65535
+ok 17 - fault on protected/unmapped store 65535
+  ---
+  duration_ms: 0.06575
+  type: 'test'
+  ...
+# Subtest: address arithmetic never wraps
+ok 18 - address arithmetic never wraps
+  ---
+  duration_ms: 0.345916
+  type: 'test'
+  ...
+# Subtest: bad assembly and encoding rejected
+ok 19 - bad assembly and encoding rejected
+  ---
+  duration_ms: 0.779208
+  type: 'test'
+  ...
+# Subtest: batch immutable, atomic, replay deterministic
+ok 20 - batch immutable, atomic, replay deterministic
+  ---
+  duration_ms: 1.33075
+  type: 'test'
+  ...
+# Subtest: malformed response faults without partial commit
+ok 21 - malformed response faults without partial commit
+  ---
+  duration_ms: 0.1545
+  type: 'test'
+  ...
+# Subtest: timeout and reset recovery
+ok 22 - timeout and reset recovery
+  ---
+  duration_ms: 5.373708
+  type: 'test'
+  ...
+# Subtest: cancellation ignores late response
+ok 23 - cancellation ignores late response
+  ---
+  duration_ms: 0.1315
+  type: 'test'
+  ...
+# Subtest: invalid probabilities and options rejected
+ok 24 - invalid probabilities and options rejected
+  ---
+  duration_ms: 0.150459
+  type: 'test'
+  ...
+# Subtest: inactive speculative condition ignored, unsupported active choice rejected
+ok 25 - inactive speculative condition ignored, unsupported active choice rejected
+  ---
+  duration_ms: 0.564209
+  type: 'test'
+  ...
+# Subtest: example configurations compile and run setup
+ok 26 - example configurations compile and run setup
+  ---
+  duration_ms: 0.287209
+  type: 'test'
+  ...
+# Subtest: memory projection uses criteria order, not response object order
+ok 27 - memory projection uses criteria order, not response object order
+  ---
+  duration_ms: 0.128667
+  type: 'test'
+  ...
+# Subtest: score projection normalizes before fixed-point conversion
+ok 28 - score projection normalizes before fixed-point conversion
+  ---
+  duration_ms: 0.151375
+  type: 'test'
+  ...
+# Subtest: numeric candidates preserve negative and fractional literals
+ok 29 - numeric candidates preserve negative and fractional literals
+  ---
+  duration_ms: 0.097375
+  type: 'test'
+  ...
+# Subtest: failed later batch preserves committed memory
+ok 30 - failed later batch preserves committed memory
+  ---
+  duration_ms: 0.262833
+  type: 'test'
+  ...
+# Subtest: replay rejects a different snapshot
+ok 31 - replay rejects a different snapshot
+  ---
+  duration_ms: 0.093292
+  type: 'test'
+  ...
+# Subtest: 12-instruction teaching cartridge branches on mood and retains color on unknown
+ok 32 - 12-instruction teaching cartridge branches on mood and retains color on unknown
+  ---
+  duration_ms: 0.693292
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 134.904458

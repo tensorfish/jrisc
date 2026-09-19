@@ -1,0 +1,300 @@
+[
+  {
+    "kind": "choose",
+    "states": [
+      {
+        "palette": 1,
+        "energy": 0,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "warm",
+              "confidence": 1,
+              "probabilities": {
+                "calm": 0,
+                "warm": 1,
+                "unknown": 0,
+                "storm": 0
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 397,
+            "output_tokens": 47
+          },
+          "latencyMs": 694,
+          "questionCount": 1,
+          "recordedAt": "2026-09-19T01:21:24.802Z"
+        },
+        "caption": "CHOOSE → ROSE"
+      },
+      {
+        "palette": 3,
+        "energy": 0,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "storm",
+              "confidence": 1,
+              "probabilities": {
+                "warm": 0,
+                "storm": 1,
+                "unknown": 0,
+                "calm": 0
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 394,
+            "output_tokens": 47
+          },
+          "latencyMs": 284,
+          "questionCount": 1,
+          "recordedAt": "2026-09-19T01:21:25.491Z"
+        },
+        "caption": "CHOOSE → AMBER"
+      }
+    ]
+  },
+  {
+    "kind": "score",
+    "states": [
+      {
+        "palette": 2,
+        "energy": 0,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "energy": {
+              "type": "score",
+              "score": 0,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 1,
+                "1": 0,
+                "2": 0
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 328,
+            "output_tokens": 17
+          },
+          "latencyMs": 321,
+          "questionCount": 1,
+          "recordedAt": "2026-09-19T01:21:27.676Z"
+        },
+        "caption": "SCORE → 0% ENERGY"
+      },
+      {
+        "palette": 2,
+        "energy": 10000,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "energy": {
+              "type": "score",
+              "score": 2,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 0,
+                "1": 0,
+                "2": 1
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 333,
+            "output_tokens": 17
+          },
+          "latencyMs": 253,
+          "questionCount": 1,
+          "recordedAt": "2026-09-19T01:21:28.131Z"
+        },
+        "caption": "SCORE → 100% ENERGY"
+      }
+    ]
+  },
+  {
+    "kind": "test",
+    "states": [
+      {
+        "palette": 1,
+        "energy": 0,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "kindness": {
+              "type": "noul",
+              "noul": 0.99
+            }
+          },
+          "usage": {
+            "input_tokens": 325,
+            "output_tokens": 21
+          },
+          "latencyMs": 295,
+          "questionCount": 1,
+          "recordedAt": "2026-09-19T01:21:29.685Z"
+        },
+        "caption": "TEST → GATE OPEN"
+      },
+      {
+        "palette": 2,
+        "energy": 0,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "kindness": {
+              "type": "noul",
+              "noul": 0.01
+            }
+          },
+          "usage": {
+            "input_tokens": 321,
+            "output_tokens": 21
+          },
+          "latencyMs": 256,
+          "questionCount": 1,
+          "recordedAt": "2026-09-19T01:21:30.410Z"
+        },
+        "caption": "TEST → GATE CLOSED"
+      }
+    ]
+  },
+  {
+    "kind": "batch",
+    "states": [
+      {
+        "palette": 2,
+        "energy": 0,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "calm",
+              "confidence": 0.97,
+              "probabilities": {
+                "warm": 0.02,
+                "unknown": 0,
+                "calm": 0.98,
+                "storm": 0
+              }
+            },
+            "energy": {
+              "type": "score",
+              "score": 0,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 1,
+                "1": 0,
+                "2": 0
+              }
+            },
+            "kindness": {
+              "type": "noul",
+              "noul": 0.97
+            },
+            "intent": {
+              "type": "choice",
+              "choice": "connect",
+              "confidence": 1,
+              "probabilities": {
+                "request": 0,
+                "unknown": 0,
+                "connect": 1,
+                "reflect": 0
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 589,
+            "output_tokens": 120
+          },
+          "latencyMs": 286,
+          "questionCount": 4,
+          "recordedAt": "2026-09-19T01:21:32.627Z"
+        },
+        "caption": "JUDGE → ICE + 0%"
+      },
+      {
+        "palette": 3,
+        "energy": 10000,
+        "bank": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "storm",
+              "confidence": 1,
+              "probabilities": {
+                "calm": 0,
+                "unknown": 0,
+                "warm": 0,
+                "storm": 1
+              }
+            },
+            "energy": {
+              "type": "score",
+              "score": 2,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 0,
+                "1": 0,
+                "2": 1
+              }
+            },
+            "kindness": {
+              "type": "noul",
+              "noul": 0.01
+            },
+            "intent": {
+              "type": "choice",
+              "choice": "connect",
+              "confidence": 0.87,
+              "probabilities": {
+                "connect": 0.91,
+                "unknown": 0.01,
+                "reflect": 0.08,
+                "request": 0
+              }
+            }
+          },
+          "usage": {
+            "input_tokens": 596,
+            "output_tokens": 119
+          },
+          "latencyMs": 260,
+          "questionCount": 4,
+          "recordedAt": "2026-09-19T01:21:33.499Z"
+        },
+        "caption": "JUDGE → AMBER + 100%"
+      }
+    ]
+  }
+]

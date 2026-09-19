@@ -1,0 +1,12 @@
+LI R7, 61440 ; display address
+LI R0, 1 ; shape
+ST R0, R7, 0 ; set shape
+LI R0, 2 ; initial palette
+ST R0, R7, 1 ; set palette
+listen: TEST R0, 3 ; kindness probability
+LI R1, 6000 ; threshold: 60%
+LI R2, 2 ; blue by default
+BLT R0, R1, paint ; below threshold
+LI R2, 1 ; rose for kindness
+paint: ST R2, R7, 1 ; set palette
+JMP listen ; next message
