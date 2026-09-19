@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f4f0e6" />
     <title>JRISC — a little computer with a new instruction</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <a class="skip-link" href="#playground">Skip to the program</a>
@@ -19,7 +19,7 @@
       <nav aria-label="Main navigation">
         <a href="#instruction-set">Instruction set</a
         ><a href="#playground">Playground</a
-        ><a href="/docs/isa.md" target="_blank" rel="noopener"
+        ><a href="./docs/isa.md" target="_blank" rel="noopener"
           >Field manual ↗</a
         >
       </nav>
@@ -197,14 +197,16 @@
                 </div>
 
                 <div class="message-bar">
-                  <input
+                  <select
                     id="message"
-                    aria-label="Incoming message"
-                    aria-describedby="interaction-state"
-                    maxlength="500"
-                    placeholder="Type a message…"
-                  /><button id="send" aria-label="Send message">Send ↗</button>
+                    aria-label="Demo message"
+                    aria-describedby="demo-label"
+                  ></select>
+                  <button id="send" aria-label="Send message">Send ↗</button>
                 </div>
+                <p id="demo-label">
+                  Fixed examples · runs locally, no Jev requests.
+                </p>
                 <div class="message-presets">
                   <button
                     data-message="You make the world a little brighter. Thank you for being here."
@@ -229,7 +231,7 @@
               >
                 <div class="decision-body">
                   <div class="fan-header">
-                    <span class="jev">JEV RETURNS</span>
+                    <span class="jev">DEMO RESULT</span>
                   </div>
                   <div id="decisions"></div>
                 </div>
@@ -345,11 +347,11 @@
         ><span
           >An experiment in programmable understanding.<br />Powered by Jev.
           Built for curiosity.</span
-        ><a href="/docs/isa.md" target="_blank" rel="noopener"
+        ><a href="./docs/isa.md" target="_blank" rel="noopener"
           >Read the field manual ↗</a
         >
       </footer>
     </main>
-    <script type="module" src="/app.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

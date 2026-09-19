@@ -14,7 +14,7 @@ page.on("request", (r) => {
   }
   assert(!r.url().includes("api.typesafe.ai"));
 });
-await page.goto("http://localhost:4173");
+await page.goto(process.env.JRISC_URL || "http://localhost:4173");
 assert.equal(await page.locator(".opcode-key").count(), 20);
 await page.locator('[data-op="CHOOSE"].opcode-key').click();
 await page.keyboard.press("ArrowRight");
@@ -66,12 +66,12 @@ assert(
   await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
 );
 assert.deepEqual(errors, []);
-assert.equal(calls.length, 8);
+assert.equal(calls.length, 0);
 await writeFile(
-  "artifacts/jev-live-check.json",
+  "artifacts/jev-demo-check.json",
   JSON.stringify(results, null, 2),
 );
 console.log(
-  "Passed: 20 instructions; all four cartridges change output with live Jev; eight local proxy calls; replay makes no calls; no browser credentials; mobile fits; no page errors.",
+  "Passed: 20 instructions; all four cartridges change output with fixed demo responses; zero API calls; replay makes no calls; no browser credentials; mobile fits; no page errors.",
 );
 await browser.close();

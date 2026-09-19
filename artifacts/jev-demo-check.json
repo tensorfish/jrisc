@@ -1,0 +1,260 @@
+[
+  {
+    "kind": "choose",
+    "states": [
+      {
+        "palette": 1,
+        "energy": 0,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 1,
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "warm",
+              "confidence": 1,
+              "probabilities": {
+                "warm": 1,
+                "calm": 0,
+                "storm": 0,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        "caption": "CHOOSE → ROSE"
+      },
+      {
+        "palette": 3,
+        "energy": 0,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 1,
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "storm",
+              "confidence": 1,
+              "probabilities": {
+                "warm": 0,
+                "calm": 0,
+                "storm": 1,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        "caption": "CHOOSE → AMBER"
+      }
+    ]
+  },
+  {
+    "kind": "score",
+    "states": [
+      {
+        "palette": 2,
+        "energy": 0,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 1,
+          "answers": {
+            "energy": {
+              "type": "score",
+              "score": 0,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 1,
+                "1": 0,
+                "2": 0
+              }
+            }
+          }
+        },
+        "caption": "SCORE → 0% ENERGY"
+      },
+      {
+        "palette": 2,
+        "energy": 10000,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 1,
+          "answers": {
+            "energy": {
+              "type": "score",
+              "score": 2,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 0,
+                "1": 0,
+                "2": 1
+              }
+            }
+          }
+        },
+        "caption": "SCORE → 100% ENERGY"
+      }
+    ]
+  },
+  {
+    "kind": "test",
+    "states": [
+      {
+        "palette": 1,
+        "energy": 0,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 1,
+          "answers": {
+            "kindness": {
+              "type": "noul",
+              "noul": 0.98
+            }
+          }
+        },
+        "caption": "TEST → GATE OPEN"
+      },
+      {
+        "palette": 2,
+        "energy": 0,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 1,
+          "answers": {
+            "kindness": {
+              "type": "noul",
+              "noul": 0.02
+            }
+          }
+        },
+        "caption": "TEST → GATE CLOSED"
+      }
+    ]
+  },
+  {
+    "kind": "batch",
+    "states": [
+      {
+        "palette": 2,
+        "energy": 0,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 4,
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "calm",
+              "confidence": 1,
+              "probabilities": {
+                "warm": 0,
+                "calm": 1,
+                "storm": 0,
+                "unknown": 0
+              }
+            },
+            "energy": {
+              "type": "score",
+              "score": 0,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 1,
+                "1": 0,
+                "2": 0
+              }
+            },
+            "kindness": {
+              "type": "noul",
+              "noul": 0.97
+            },
+            "intent": {
+              "type": "choice",
+              "choice": "connect",
+              "confidence": 1,
+              "probabilities": {
+                "connect": 1,
+                "request": 0,
+                "reflect": 0,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        "caption": "JUDGE → ICE + 0%"
+      },
+      {
+        "palette": 3,
+        "energy": 10000,
+        "bank": {
+          "model": "local-demo",
+          "latencyMs": 0,
+          "questionCount": 4,
+          "answers": {
+            "mood": {
+              "type": "choice",
+              "choice": "storm",
+              "confidence": 1,
+              "probabilities": {
+                "warm": 0,
+                "calm": 0,
+                "storm": 1,
+                "unknown": 0
+              }
+            },
+            "energy": {
+              "type": "score",
+              "score": 2,
+              "confidence": 1,
+              "legend": {
+                "0": "Quiet, subdued, relaxed",
+                "1": "Engaged, expressive",
+                "2": "Intense, excited, emphatic"
+              },
+              "probabilities": {
+                "0": 0,
+                "1": 0,
+                "2": 1
+              }
+            },
+            "kindness": {
+              "type": "noul",
+              "noul": 0.01
+            },
+            "intent": {
+              "type": "choice",
+              "choice": "connect",
+              "confidence": 1,
+              "probabilities": {
+                "connect": 1,
+                "request": 0,
+                "reflect": 0,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        "caption": "JUDGE → AMBER + 100%"
+      }
+    ]
+  }
+]

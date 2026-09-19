@@ -1,5 +1,11 @@
-import { VM, assemble, disassemble, decode, SEMANTIC_OPS } from "/lib/vm.js";
-import { makeProgram, makeTinyProgram, makeCartridge } from "/lib/semantic.js";
+import { VM, assemble, disassemble, decode, SEMANTIC_OPS } from "./lib/vm.js";
+import {
+  makeProgram,
+  makeTinyProgram,
+  makeCartridge,
+  DEMO_EXAMPLES as hooks,
+  demoResponse,
+} from "./lib/semantic.js";
 const $ = (id) => document.getElementById(id),
   sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let program,
@@ -273,7 +279,7 @@ function explainInstruction(d) {
   const address = (n) => "0x" + n.toString(16).toUpperCase();
   if (SEMANTIC_OPS.includes(op))
     return vm.status === "judging"
-      ? "Waiting for Jev…"
+      ? "Loading demo response…"
       : `${op} · awaiting input`;
   if (op === "LI")
     return `Next: put ${i} into register R${a}. This runs locally.`;
@@ -291,16 +297,6 @@ function explainInstruction(d) {
   );
 }
 
-async function post(path, body) {
-  const r = await fetch(path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  const data = await r.json();
-  if (!r.ok) throw Error(data.error);
-  return data;
-}
 function showDecisions(result, waiting = false) {
   document.querySelector(".decision-panel").hidden = !result;
   document.querySelector(".answer-details").hidden = !result;
@@ -338,7 +334,8 @@ function showDecisions(result, waiting = false) {
     $("decisions").append(el);
   }
   if (result) {
-    $("latency").textContent = result.latencyMs + " ms";
+    $("latency").textContent =
+      result.model === "local-demo" ? "Local" : result.latencyMs + " ms";
     $("model").textContent = result.model;
     $("questions").textContent = result.questionCount + " / batch";
     $("commit").textContent =
@@ -357,7 +354,7 @@ function render() {
     program.words.map(decode).find((d) => SEMANTIC_OPS.includes(d.op))?.op ||
     "program";
   const busy = vm.status === "judging" || queue.length > 0;
-  $("interaction-title").textContent = "Your message";
+  $("interaction-title").textContent = "Choose an example";
   $("interaction-state").textContent =
     vm.status === "fault"
       ? "Couldn't run · reset to retry"
@@ -367,7 +364,7 @@ function render() {
           ? "Replay"
           : vm.bank
             ? "Ready"
-            : "Type or try an example";
+            : "Demo · no API calls";
   $("message")
     .closest(".interaction-panel")
     .classList.toggle("is-running", busy);
@@ -400,7 +397,7 @@ function render() {
     .join("");
   $("status").textContent =
     vm.status === "judging"
-      ? "ASKING JEV"
+      ? "DEMO"
       : vm.status === "fault"
         ? "FAULT"
         : running
@@ -444,37 +441,7 @@ function render() {
   $("scene-word").style.color =
     color === "rose" ? "#efb8a7" : color === "ice" ? "#b3dbe5" : "#f8d59a";
 }
-const hooks = {
-  choose: [
-    [
-      "Make it blush",
-      "You make the world a little brighter. Thank you for being here.",
-    ],
-    [
-      "Make it angry",
-      "Everything is falling apart! I am furious and overwhelmed!",
-    ],
-    ["Calm it down", "The lake is still. Breathe slowly. There is no rush."],
-  ],
-  score: [
-    ["Slow it down", "I am resting quietly. Everything is peaceful and still."],
-    ["Full energy", "WE DID IT!!! I AM SO EXCITED I COULD SCREAM!!!"],
-    ["Somewhere between", "That is interesting. I would like to hear more."],
-  ],
-  test: [
-    [
-      "Open the gate",
-      "Thank you for helping me. You are wonderful and I care about you.",
-    ],
-    ["Keep it closed", "Go away. You are annoying and I hate you."],
-    ["Try a neutral line", "The parcel arrived at three o'clock."],
-  ],
-  batch: [
-    ["Quiet gratitude", "Thank you for being here. I feel calm and at peace."],
-    ["Loud frustration", "THIS IS A DISASTER! I AM FURIOUS AND OVERWHELMED!!!"],
-    ["Pure joy", "YOU ARE AMAZING!!! THANK YOU SO MUCH, I LOVE THIS!!!"],
-  ],
-};
+
 function load(p, { replay = null } = {}) {
   generation++;
   running = false;
@@ -486,7 +453,14 @@ function load(p, { replay = null } = {}) {
     button.textContent = examples[i][0];
     button.dataset.message = examples[i][1];
   });
-  $("message").value = "";
+  $("message").replaceChildren(
+    ...examples.map(([label, message]) => {
+      const option = document.createElement("option");
+      option.value = message;
+      option.textContent = message;
+      return option;
+    }),
+  );
   document.querySelectorAll("[data-preset]").forEach((key) => {
     const selected = key.dataset.preset === p.config.cartridge;
     key.classList.toggle("selected", selected);
@@ -504,21 +478,15 @@ function load(p, { replay = null } = {}) {
   vm = new VM(p.words, {
     descriptors: p.descriptors,
     replay,
-    judge: async (descriptor, operation) => {
+    judge: async (descriptor) => {
       activeQuestions = descriptor.questions;
       showDecisions(null, true);
       $("snapshot-label").textContent = descriptor.state.message;
       $("snapshot-label").title = descriptor.state.message;
-      $("commit").textContent = "Waiting for Jev…";
-      const result = await post("/api/proxy", {
-        ...operation,
-        message: descriptor.state.message,
-      });
+      const result = demoResponse(descriptor);
       if (localGeneration === generation) {
         showDecisions(result);
-        notice(
-          `Jev returned ${result.questionCount} decisions in ${result.latencyMs} ms. Branches and writes now run locally.`,
-        );
+        notice("Demo response loaded locally.");
       }
       return result;
     },
@@ -563,7 +531,7 @@ function load(p, { replay = null } = {}) {
         ? "quiet_orbit"
         : "golden_hour") + ".jrisc";
   $("snapshot-label").textContent = "";
-  $("model").textContent = "jev-latest";
+  $("model").textContent = "local-demo";
   showDecisions(null);
   $("commit").textContent = "Ready";
   $("latency").textContent = "—";

@@ -9,7 +9,9 @@
     "record": "node scripts/record.js",
     "video": "python3 scripts/render-video.py",
     "check:browser": "node scripts/browser-check.js",
-    "format": "prettier --write \"lib/*.js\" \"public/*.{js,css,html}\" \"scripts/*.js\" \"test/*.js\" server.js"
+    "format": "prettier --write \"lib/*.js\" \"public/*.{js,css,html}\" \"scripts/*.js\" \"test/*.js\" server.js",
+    "build": "node scripts/build.js",
+    "preview": "node scripts/preview.js"
   },
   "devDependencies": {
     "ffmpeg-static": "^5.3.0",

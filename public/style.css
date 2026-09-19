@@ -1956,3 +1956,29 @@ footer > a:last-child {
     padding: 18px;
   }
 }
+
+.interaction-panel .message-bar select {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px;
+  border: 1px solid #c9c3b8;
+  border-radius: 2px;
+  background: #fffdf8;
+  color: var(--ink);
+  font:
+    12px "DM Sans",
+    sans-serif;
+  text-overflow: ellipsis;
+}
+.interaction-panel .message-bar select:focus-visible {
+  outline: 2px solid #a28ac8;
+  outline-offset: 2px;
+}
+#demo-label {
+  font: 10px var(--mono);
+  color: var(--muted);
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
